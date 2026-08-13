@@ -1,0 +1,15 @@
+========================================
+       WEB VULNERABILITY SCANNER
+========================================
+
+Target: https://example.com/?name=dalia&id=10
+
+SCAN RESULTS
+------------
+SQL Injection       : Not Detected
+XSS                 : Not Detected
+Path Traversal      : Not Detected
+
+========================================
+             SCAN COMPLETE
+========================================
