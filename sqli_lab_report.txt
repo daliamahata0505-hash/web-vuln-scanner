@@ -2,7 +2,7 @@
        WEB VULNERABILITY SCANNER
 ========================================
 
-Target: https://0a490035045c5b8b802b35d3007b0024.web-security-academy.net/filter?category=Gifts
+Target: https://0a2f000704a84233807ad0650021009a.web-security-academy.net/filter?category=Gifts
 
 SCAN RESULTS
 ------------
