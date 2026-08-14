@@ -1,0 +1,33 @@
+========================================
+       PATH TRAVERSAL LAB TEST
+========================================
+
+Target:
+https://0a23004203382862803f301e001a00d9.web-security-academy.net/image?filename=31.jpg
+
+Lab Environment:
+PortSwigger Web Security Academy
+
+Parameter Tested:
+filename
+
+Scanner Result:
+Possible Path Traversal
+
+Detection Details:
+Payload: ../../../../etc/passwd
+
+Reason:
+Sensitive file content indicator found
+
+Scanner Output:
+[!] Possible Path Traversal detected in parameter: filename
+    Payload: ../../../../etc/passwd
+    Reason: sensitive file content indicator found
+
+Final Result:
+Path Traversal: Possible
+
+========================================
+             TEST COMPLETE
+========================================

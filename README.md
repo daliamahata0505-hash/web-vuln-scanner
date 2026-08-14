@@ -23,7 +23,7 @@ The scanner currently checks URL parameters for:
 * argparse
 * urllib.parse
 * PowerShell
-* VS Code
+* Visual Studio Code
 
 ## Project Structure
 
@@ -34,25 +34,22 @@ web-vuln-scanner/
 ├── requirements.txt
 ├── README.md
 ├── scan_report.txt
-│
-├── scanner_backup.py
-├── scanner_summary_backup.py
-├── scanner_v3_backup.py
-├── scanner_xss_backup.py
-│
-└── venv/
+├── sqli_lab_report.txt
+├── xss_lab_report.txt
+├── path_traversal_lab_report.txt
+└── .gitignore
 ```
 
 ## Installation
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/daliamahata0505-hash/web-vuln-scanner.git
 cd web-vuln-scanner
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 On Windows PowerShell:
 
@@ -60,19 +57,19 @@ On Windows PowerShell:
 python -m venv venv
 ```
 
-### 3. Activate the virtual environment
+### 3. Activate the Virtual Environment
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-If activation is successful, your terminal should look similar to:
+After successful activation, the terminal should look similar to:
 
 ```text
 (venv) PS C:\Users\...\web-vuln-scanner>
 ```
 
-### 4. Install dependencies
+### 4. Install Dependencies
 
 ```powershell
 pip install -r requirements.txt
@@ -86,7 +83,7 @@ Run the scanner by providing a target URL:
 python scanner.py --url "https://example.com/?id=1"
 ```
 
-To save the scan results to a text report:
+To save scan results to a text report:
 
 ```powershell
 python scanner.py --url "https://example.com/?id=1" --output scan_report.txt
@@ -96,7 +93,7 @@ python scanner.py --url "https://example.com/?id=1" --output scan_report.txt
 
 ### `--url`
 
-Specifies the URL to scan.
+Specifies the target URL to scan.
 
 Example:
 
@@ -122,6 +119,7 @@ The scanner performs basic SQL Injection checks using:
 
 * SQL error-message detection
 * Boolean-based true/false response comparison
+* Response-length comparison
 
 Example:
 
@@ -129,9 +127,11 @@ Example:
 [*] Testing for possible SQL Injection...
 [!] Possible SQL Injection detected in parameter: category
     Reason: response behavior differs between boolean tests
+    True response length: 4950
+    False response length: 3776
 ```
 
-### Reflected XSS
+### Reflected Cross-Site Scripting (XSS)
 
 The scanner checks whether a test payload is reflected in the server response.
 
@@ -145,21 +145,22 @@ Example:
 
 ### Path Traversal
 
-The scanner tests URL parameters for path traversal patterns and checks responses for indicators of sensitive file content.
+The scanner tests URL parameters with path traversal payloads and checks responses for indicators of sensitive file content.
 
 Example:
 
 ```text
 [*] Testing for possible Path Traversal...
 [!] Possible Path Traversal detected in parameter: filename
+    Payload: ../../../../etc/passwd
     Reason: sensitive file content indicator found
 ```
 
 ## Testing
 
-The scanner was tested against deliberately vulnerable PortSwigger Web Security Academy labs.
+The scanner was tested against deliberately vulnerable **PortSwigger Web Security Academy** labs.
 
-Test results:
+### Test Results
 
 | Vulnerability  | Result   |
 | -------------- | -------- |
@@ -170,8 +171,6 @@ Test results:
 ### SQL Injection Test
 
 The scanner successfully identified possible SQL Injection through differences between boolean test responses.
-
-Example:
 
 ```text
 [!] Possible SQL Injection detected in parameter: category
@@ -184,8 +183,6 @@ Example:
 
 The scanner successfully identified reflected XSS.
 
-Example:
-
 ```text
 [!] Possible XSS detected in parameter: search
     Reason: test payload reflected in response
@@ -194,8 +191,6 @@ Example:
 ### Path Traversal Test
 
 The scanner successfully identified possible Path Traversal.
-
-Example:
 
 ```text
 [!] Possible Path Traversal detected in parameter: filename
