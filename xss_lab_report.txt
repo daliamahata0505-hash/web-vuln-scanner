@@ -1,0 +1,15 @@
+========================================
+       WEB VULNERABILITY SCANNER
+========================================
+
+Target: https://0a6a00d103fac86b80f767bb000e00d0.web-security-academy.net/?search=test123
+
+SCAN RESULTS
+------------
+SQL Injection       : Not Detected
+XSS                 : Possible
+Path Traversal      : Not Detected
+
+========================================
+             SCAN COMPLETE
+========================================

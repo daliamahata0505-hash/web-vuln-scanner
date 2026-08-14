@@ -41,7 +41,6 @@ def scan_target(url):
     except requests.RequestException as error:
         print("[-] Could not connect to target")
         print(f"[-] Error: {error}")
-
         return None
 
 
@@ -235,11 +234,15 @@ def check_sql_injection(url, parameters, results):
                     f"{difference} characters"
                 )
 
-        except requests.RequestException:
+        except requests.RequestException as error:
 
             print(
                 f"[-] Could not test SQL Injection "
                 f"parameter: {parameter}"
+            )
+
+            print(
+                f"    Error: {error}"
             )
 
     print()
@@ -295,11 +298,15 @@ def check_xss(url, parameters, results):
                     f"in parameter: {parameter}"
                 )
 
-        except requests.RequestException:
+        except requests.RequestException as error:
 
             print(
                 f"[-] Could not test XSS "
                 f"parameter: {parameter}"
+            )
+
+            print(
+                f"    Error: {error}"
             )
 
     print()
@@ -309,9 +316,9 @@ def check_path_traversal(url, parameters, results):
     print("[*] Testing for possible Path Traversal...")
 
     traversal_payloads = [
-        "../../etc/passwd",
-        "../../../etc/passwd",
-        "../../../../etc/passwd"
+        "../../../../etc/passwd",
+        "..%2f..%2f..%2f..%2fetc%2fpasswd",
+        "....//....//....//....//etc/passwd"
     ]
 
     traversal_indicators = [
@@ -329,7 +336,6 @@ def check_path_traversal(url, parameters, results):
         )
 
         detected = False
-        test_failed = False
 
         for payload in traversal_payloads:
 
@@ -363,6 +369,10 @@ def check_path_traversal(url, parameters, results):
                         )
 
                         print(
+                            f"    Payload: {payload}"
+                        )
+
+                        print(
                             "    Reason: sensitive file "
                             "content indicator found"
                         )
@@ -375,17 +385,20 @@ def check_path_traversal(url, parameters, results):
                 if detected:
                     break
 
-            except requests.RequestException:
+            except requests.RequestException as error:
 
                 print(
                     f"[-] Could not test Path Traversal "
                     f"parameter: {parameter}"
                 )
 
-                test_failed = True
+                print(
+                    f"    Error: {error}"
+                )
+
                 break
 
-        if not detected and not test_failed:
+        if not detected:
 
             print(
                 f"[-] No Path Traversal indication "
