@@ -1,33 +1,15 @@
 ========================================
-       PATH TRAVERSAL LAB TEST
+       WEB VULNERABILITY SCANNER
 ========================================
 
-Target:
-https://0a23004203382862803f301e001a00d9.web-security-academy.net/image?filename=31.jpg
+Target: https://0a2a009b039ac48e833d157d00c2000d.web-security-academy.net/image?filename=30.jpg
 
-Lab Environment:
-PortSwigger Web Security Academy
-
-Parameter Tested:
-filename
-
-Scanner Result:
-Possible Path Traversal
-
-Detection Details:
-Payload: ../../../../etc/passwd
-
-Reason:
-Sensitive file content indicator found
-
-Scanner Output:
-[!] Possible Path Traversal detected in parameter: filename
-    Payload: ../../../../etc/passwd
-    Reason: sensitive file content indicator found
-
-Final Result:
-Path Traversal: Possible
+SCAN RESULTS
+------------
+SQL Injection       : Not Detected
+XSS                 : Not Detected
+Path Traversal      : Possible
 
 ========================================
-             TEST COMPLETE
+             SCAN COMPLETE
 ========================================
